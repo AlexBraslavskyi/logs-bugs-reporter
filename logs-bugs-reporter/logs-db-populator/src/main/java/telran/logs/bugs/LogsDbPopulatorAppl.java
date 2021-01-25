@@ -21,8 +21,7 @@ public class LogsDbPopulatorAppl {
 	}
 	void takeAndSaveLogDto( LogDto logDto) {
 		
-		
-		
+	
 		
 		//TODO taking and saving to MongoDB logDto
 		System.out.println(logDto);
