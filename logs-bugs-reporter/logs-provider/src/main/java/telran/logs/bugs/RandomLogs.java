@@ -20,8 +20,6 @@ public LogDto createRandomLog() {
 	return new LogDto(new Date(), logType, getArtifact(logType), getResponseTime(logType), "");
 }
 
-
-
 private int getResponseTime(LogType logType) {
 	
 	return logType == LogType.NO_EXCEPTION ?
