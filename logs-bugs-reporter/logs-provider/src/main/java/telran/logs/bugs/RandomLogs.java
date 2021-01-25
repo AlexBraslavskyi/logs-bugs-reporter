@@ -1,8 +1,9 @@
 package telran.logs.bugs;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.EnumMap;
 import java.util.concurrent.ThreadLocalRandom;
-
 
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,8 @@ public LogDto createRandomLog() {
 	LogType logType = getLogType();
 	return new LogDto(new Date(), logType, getArtifact(logType), getResponseTime(logType), "");
 }
+
+
 
 private int getResponseTime(LogType logType) {
 	
