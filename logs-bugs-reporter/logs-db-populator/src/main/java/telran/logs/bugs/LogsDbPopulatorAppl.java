@@ -2,8 +2,6 @@ package telran.logs.bugs;
 
 import java.util.function.Consumer;
 
-import javax.validation.Valid;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +20,10 @@ public class LogsDbPopulatorAppl {
 		return this::takeAndSaveLogDto;
 	}
 	void takeAndSaveLogDto( LogDto logDto) {
+		
+		
+		
+		
 		//TODO taking and saving to MongoDB logDto
 		System.out.println(logDto);
 	}
