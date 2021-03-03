@@ -1,14 +1,36 @@
 package telran.logs.bugs;
 
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_ARTIFACTS;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_ASSIGN;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_CLOSE;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_OPEN;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_OPEN_ASSIGN;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_PROGRAMMERS;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_PROGRAMMERS_COUNT;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_PROGRAMMERS_LEAST;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_PROGRAMMERS_MOST;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_SERIOUSNESS_COUNT;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_SERIOUSNESS_MOST;
+import static telran.logs.bugs.api.BugsReporterApi.BUGS_UNCLOSED;
+import static telran.logs.bugs.api.BugsReporterApi.N_DAYS;
+import static telran.logs.bugs.api.BugsReporterApi.N_PROGRAMMERS;
+import static telran.logs.bugs.api.BugsReporterApi.N_TYPES;
+import static telran.logs.bugs.api.BugsReporterApi.PROGRAMMER_ID;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
@@ -16,12 +38,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import telran.logs.bugs.dto.*;
+import telran.logs.bugs.dto.ArtifactDto;
+import telran.logs.bugs.dto.AssignBugData;
+import telran.logs.bugs.dto.BugAssignDto;
+import telran.logs.bugs.dto.BugDto;
+import telran.logs.bugs.dto.BugResponseDto;
+import telran.logs.bugs.dto.BugStatus;
+import telran.logs.bugs.dto.CloseBugData;
+import telran.logs.bugs.dto.EmailBugsCount;
+import telran.logs.bugs.dto.OpenningMethod;
+import telran.logs.bugs.dto.ProgrammerDto;
+import telran.logs.bugs.dto.Seriousness;
+import telran.logs.bugs.dto.SeriousnessBugCount;
 import telran.logs.bugs.impl.BugsReporterImpl;
 import telran.logs.bugs.interfaces.BugsReporter;
 import telran.logs.bugs.jpa.entities.Programmer;
-
-import static telran.logs.bugs.api.BugsReporterApi.*;
 
 @SpringBootTest
 @AutoConfigureWebTestClient
@@ -36,7 +67,7 @@ public EmailBugCountTest(String email, long count) {
 		}
 
 @Override
-		public int hashCode() {
+		public int hashCode() { 
 			return Objects.hash(count, email);
 		}
 
