@@ -1,21 +1,41 @@
 package telran.logs.bugs.impl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import telran.logs.bugs.dto.*;
+import telran.logs.bugs.dto.ArtifactDto;
+import telran.logs.bugs.dto.AssignBugData;
+import telran.logs.bugs.dto.BugAssignDto;
+import telran.logs.bugs.dto.BugDto;
+import telran.logs.bugs.dto.BugResponseDto;
+import telran.logs.bugs.dto.BugStatus;
+import telran.logs.bugs.dto.CloseBugData;
+import telran.logs.bugs.dto.EmailBugsCount;
+import telran.logs.bugs.dto.OpenningMethod;
+import telran.logs.bugs.dto.ProgrammerDto;
+import telran.logs.bugs.dto.Seriousness;
+import telran.logs.bugs.dto.SeriousnessBugCount;
 import telran.logs.bugs.exceptions.DuplicatedException;
 import telran.logs.bugs.exceptions.NotFoundException;
 import telran.logs.bugs.interfaces.BugsReporter;
-import telran.logs.bugs.jpa.entities.*;
-import telran.logs.bugs.jpa.repo.*;
+import telran.logs.bugs.jpa.entities.Artifact;
+import telran.logs.bugs.jpa.entities.Bug;
+import telran.logs.bugs.jpa.entities.Programmer;
+import telran.logs.bugs.jpa.repo.ArtifactRepository;
+import telran.logs.bugs.jpa.repo.BugRepository;
+import telran.logs.bugs.jpa.repo.ProgrammerRepository;
+
 @Service
 public class BugsReporterImpl implements BugsReporter {
 
@@ -23,16 +43,27 @@ public class BugsReporterImpl implements BugsReporter {
 public static final String CLOSING_DESCRIPTION = "\nClosing description:\n";
 private static final String BUG_NOT_FOUND_FORMAT_MESSAGE = "bug with id %d not found";
 private static final String PROGRAMMER_NOT_FOUND_FORMAT_MESSAGE = "programmer with id %d not found";
+private static final String EMAIL_DOMAIN = "@gmail.com";
 BugRepository bugRepository;
 ArtifactRepository artifactRepository;
 ProgrammerRepository programmerRepository;
+@Value("${populate-db:false}")
+boolean isPopulate;
+@Value("${names}") 
+String[] programmerNames;
+@Value("${artifacts}")
+String[] artifacts;
 
 public BugsReporterImpl(BugRepository bugRepository, ArtifactRepository artifactRepository,
 		ProgrammerRepository programmerRepository) {
 	this.bugRepository = bugRepository;
 	this.artifactRepository = artifactRepository;
 	this.programmerRepository = programmerRepository;
-}
+} 
+
+
+
+
 	@Override
 	@Transactional
 	public ProgrammerDto addProgrammer(ProgrammerDto programmerDto) {
@@ -190,5 +221,27 @@ public BugsReporterImpl(BugRepository bugRepository, ArtifactRepository artifact
 		
 		return bugRepository.seriousnessMostBugs(nTypes);
 	}
-
+	@PostConstruct
+	public void fillDb() {
+		if (isPopulate) {
+			List<Programmer> programmers = new ArrayList<>();
+			List<Artifact> artifactsList = new ArrayList<>();
+			artifactRepository.deleteAll();
+			bugRepository.deleteAll();
+			programmerRepository.deleteAll();
+			
+			for (int i = 1; i < programmerNames.length + 1; i++) {
+				programmers.add(new Programmer(i, programmerNames[i - 1], programmerNames[i - 1] + EMAIL_DOMAIN));
+			}				
+			for(String artifact:artifacts) {
+					artifactsList.add(new Artifact(artifact, programmers.get(getRandomNum(0, programmers.size()))));	
+			}
+			programmerRepository.saveAll(programmers);
+			artifactRepository.saveAll(artifactsList);
+			
+		}
+	}
+	public int getRandomNum(int min, int max) {
+		return ThreadLocalRandom.current().nextInt(max - min) + min;
+	}
 }

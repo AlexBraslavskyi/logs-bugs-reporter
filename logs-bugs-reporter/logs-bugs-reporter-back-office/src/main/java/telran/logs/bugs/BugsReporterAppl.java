@@ -9,6 +9,6 @@ public class BugsReporterAppl {
 	public static void main(String[] args) {
 		SpringApplication.run(BugsReporterAppl.class, args);
 
-	}
+	} 
 
 }
