@@ -44,6 +44,7 @@ public static final String CLOSING_DESCRIPTION = "\nClosing description:\n";
 private static final String BUG_NOT_FOUND_FORMAT_MESSAGE = "bug with id %d not found";
 private static final String PROGRAMMER_NOT_FOUND_FORMAT_MESSAGE = "programmer with id %d not found";
 private static final String EMAIL_DOMAIN = "@gmail.com";
+private static final String EMAIL_PREFIX = "abraslik";
 BugRepository bugRepository;
 ArtifactRepository artifactRepository;
 ProgrammerRepository programmerRepository;
@@ -231,7 +232,7 @@ public BugsReporterImpl(BugRepository bugRepository, ArtifactRepository artifact
 			programmerRepository.deleteAll();
 			
 			for (int i = 1; i < programmerNames.length + 1; i++) {
-				programmers.add(new Programmer(i, programmerNames[i - 1], programmerNames[i - 1] + EMAIL_DOMAIN));
+				programmers.add(new Programmer(i, programmerNames[i - 1], EMAIL_PREFIX + "+" + i + EMAIL_DOMAIN));
 			}				
 			for(String artifact:artifacts) {
 					artifactsList.add(new Artifact(artifact, programmers.get(getRandomNum(0, programmers.size()))));	
