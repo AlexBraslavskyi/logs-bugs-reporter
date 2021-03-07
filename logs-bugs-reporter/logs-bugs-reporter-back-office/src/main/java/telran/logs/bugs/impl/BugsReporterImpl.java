@@ -1,16 +1,11 @@
 package telran.logs.bugs.impl;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,12 +43,7 @@ private static final String EMAIL_PREFIX = "abraslik";
 BugRepository bugRepository;
 ArtifactRepository artifactRepository;
 ProgrammerRepository programmerRepository;
-@Value("${populate-db:false}")
-boolean isPopulate;
-@Value("${names}") 
-String[] programmerNames;
-@Value("${artifacts}")
-String[] artifacts;
+
 
 public BugsReporterImpl(BugRepository bugRepository, ArtifactRepository artifactRepository,
 		ProgrammerRepository programmerRepository) {
@@ -221,28 +211,5 @@ public BugsReporterImpl(BugRepository bugRepository, ArtifactRepository artifact
 	public List<Seriousness> getSeriousnessTypesWithMostBugs(int nTypes) {
 		
 		return bugRepository.seriousnessMostBugs(nTypes);
-	}
-	@PostConstruct
-	public void fillDb() {
-		if (isPopulate) {
-			List<Programmer> programmers = new ArrayList<>();
-			List<Artifact> artifactsList = new ArrayList<>();
-			artifactRepository.deleteAll();
-			bugRepository.deleteAll();
-			programmerRepository.deleteAll();
-			
-			for (int i = 1; i < programmerNames.length + 1; i++) {
-				programmers.add(new Programmer(i, programmerNames[i - 1], EMAIL_PREFIX + "+" + i + EMAIL_DOMAIN));
-			}				
-			for(String artifact:artifacts) {
-					artifactsList.add(new Artifact(artifact, programmers.get(getRandomNum(0, programmers.size()))));	
-			}
-			programmerRepository.saveAll(programmers);
-			artifactRepository.saveAll(artifactsList);
-			
-		}
-	}
-	public int getRandomNum(int min, int max) {
-		return ThreadLocalRandom.current().nextInt(max - min) + min;
 	}
 }
