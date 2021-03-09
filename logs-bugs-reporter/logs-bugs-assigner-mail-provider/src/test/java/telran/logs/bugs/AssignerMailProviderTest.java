@@ -16,7 +16,7 @@ WebTestClient client;
 	String assignerMail;
 	@Test
 	void assignerMailTest() {
-		client.get().uri("/mail/assigner").exchange().expectStatus().isOk()
+		client.get().uri("/email/assigner").exchange().expectStatus().isOk()
 		.expectBody(String.class).isEqualTo(assignerMail);
 	}
 }

@@ -2,7 +2,8 @@ package telran.logs.bugs;
 
 import java.util.function.Consumer;
 
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -36,6 +37,7 @@ EmailProviderClient emailClient;
 		return this::takeLogAndSendMail;
 	}
 	void takeLogAndSendMail(LogDto logDto) {
+		LOG.debug("received log {}", logDto);
 		String email = emailClient.getEmailByArtifact(logDto.artifact);
 		String greetingName = PROGRAMMER_GREETING_NAME;
 		

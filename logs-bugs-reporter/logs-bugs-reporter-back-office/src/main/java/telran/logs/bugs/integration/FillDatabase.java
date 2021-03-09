@@ -25,7 +25,7 @@ boolean integrationTest;
 	String names[];
 	@Value("${app-mail-account:xxx}")
 	String mailAccount;
-	@Value("${app-fixed-artifacts:authentication,authorization}")
+	@Value("${app-fixed-artifacts:authentication,authrization}")  //authorization with mistake specially
 	String []artifacts;
 	@Value("${app-no-fixed-artifact-base:class}")
 	String artifactBase;
