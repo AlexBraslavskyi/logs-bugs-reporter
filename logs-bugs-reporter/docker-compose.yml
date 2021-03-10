@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+  programmer-email-provider:
+    ports:
+      - "8284:8284"
+    build:
+      logs-bugs-email-provider
+  asigner-email-provider:
+    ports:
+      - "8283:8283"
+    build:
+      logs-bugs-assigner-mail-provider  
+  email-notifier:
+    build:
+      logs-bugs-email-notifier
