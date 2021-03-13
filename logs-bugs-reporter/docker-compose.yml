@@ -5,7 +5,7 @@ services:
       - "8284:8284"
     build:
       logs-bugs-email-provider
-  asigner-email-provider:
+  assigner-email-provider:
     ports:
       - "8283:8283"
     build:
@@ -13,3 +13,24 @@ services:
   email-notifier:
     build:
       logs-bugs-email-notifier
+  analyzer:
+    build:
+      logs-analyzer
+  bugs-openning:
+    build:
+      logs-bugs-openning
+  reporter-back-office:
+    ports:
+      - "8282:8282"
+    build:
+      logs-bugs-reporter-back-office
+  db-populator:
+    build:
+       logs-db-populator
+  info-back-office:
+    build:
+       logs-info-back-office
+  
+        
+  
+  
