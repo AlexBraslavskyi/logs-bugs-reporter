@@ -1,0 +1,17 @@
+<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+nshkvbxqzylrwkoz
+
+
+KAFKA_PASSWORD=5YGnUuvAvVF4_1XXZXdNT4KXA2bydtcm
+MAIL_PASSWORD=svzygfatlakerwyy
+MONGO_PASSWORD=12345.com
+PG_HEROKU_PASSWORD=5e0f4f6a726561b45ecd7d848e10a9cd201db247f9d3869f6f735eae3e9ca199

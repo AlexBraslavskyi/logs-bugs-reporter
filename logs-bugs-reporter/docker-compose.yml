@@ -5,6 +5,9 @@ services:
       - "8284:8284"
     build:
       logs-bugs-email-provider
+    environment:
+      - POSTGRES_PASSWORD=5e0f4f6a726561b45ecd7d848e10a9cd201db247f9d3869f6f735eae3e9ca199
+     
   assigner-email-provider:
     ports:
       - "8283:8283"
@@ -13,23 +16,38 @@ services:
   email-notifier:
     build:
       logs-bugs-email-notifier
+    environment:
+      - MAIL_PASSWORD=svzygfatlakerwyy
+      - KAFKA_PASSWORD=5YGnUuvAvVF4_1XXZXdNT4KXA2bydtcm
   analyzer:
     build:
       logs-analyzer
+    environment:
+      - KAFKA_PASSWORD=5YGnUuvAvVF4_1XXZXdNT4KXA2bydtcm
   bugs-openning:
     build:
       logs-bugs-openning
+    environment:
+      - POSTGRES_PASSWORD=5e0f4f6a726561b45ecd7d848e10a9cd201db247f9d3869f6f735eae3e9ca199
+      - KAFKA_PASSWORD=5YGnUuvAvVF4_1XXZXdNT4KXA2bydtcm
   reporter-back-office:
     ports:
       - "8282:8282"
     build:
       logs-bugs-reporter-back-office
+    environment:
+      - POSTGRES_PASSWORD=5e0f4f6a726561b45ecd7d848e10a9cd201db247f9d3869f6f735eae3e9ca199
   db-populator:
     build:
        logs-db-populator
+    environment:
+      - MONGO_PASSWORD=12345.com
+      - KAFKA_PASSWORD=5YGnUuvAvVF4_1XXZXdNT4KXA2bydtcm
   info-back-office:
     build:
        logs-info-back-office
+    environment:
+      - MONGO_PASSWORD=12345.com
   
         
   
