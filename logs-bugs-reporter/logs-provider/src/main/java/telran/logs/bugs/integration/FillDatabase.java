@@ -11,8 +11,10 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import telran.logs.bugs.entities.repo.*;
-import telran.logs.bugs.jpa.entities.*;
+import telran.logs.bugs.entities.repo.ArtifactRepository;
+import telran.logs.bugs.entities.repo.ProgrammerRepository;
+import telran.logs.bugs.jpa.entities.Artifact;
+import telran.logs.bugs.jpa.entities.Programmer;
 
 @Component
 public class FillDatabase {
@@ -31,7 +33,7 @@ boolean integrationTest;
 	String names[];
 	@Value("${app-mail-account:llogs.bugs.reporter}")
 	String mailAccount;
-	@Value("${app-fixed-artifacts:authentication,authrization}")
+	@Value("${app-fixed-artifacts:authentication,authorization}")
 	String []artifacts;
 	@Value("${app-no-fixed-artifact-base:class}")
 	String artifactBase;
