@@ -6,18 +6,14 @@ services:
     build:
       logs-bugs-discovery-server
   programmer-email-provider:
-    ports:
-      - "8284:8284"
     build:
       logs-bugs-email-provider
     mem_limit: 350m
     mem_reservation: 100M
     environment:
-      - POSTGRES_PASSWORD=5e0f4f6a726561b45ecd7d848e10a9cd201db247f9d3869f6f735eae3e9ca199
+      - POSTGRES_PASSWORD=643aceb9dae35f7d22e4fd7b4ebdc02e7290a04808c903c8477ed988b1a3a985
      
   assigner-email-provider:
-    ports:
-      - "8283:8283"
     build:
       logs-bugs-assigner-mail-provider 
     mem_limit: 350m
@@ -28,7 +24,7 @@ services:
     mem_limit: 350m
     mem_reservation: 100M
     environment:
-      - MAIL_PASSWORD=svzygfatlakerwyy
+      - MAIL_PASSWORD=nshkvbxqzylrwkoz
       - KAFKA_PASSWORD=5YGnUuvAvVF4_1XXZXdNT4KXA2bydtcm
   analyzer:
     build:
@@ -43,7 +39,7 @@ services:
     mem_limit: 350m
     mem_reservation: 100M
     environment:
-      - POSTGRES_PASSWORD=5e0f4f6a726561b45ecd7d848e10a9cd201db247f9d3869f6f735eae3e9ca199
+      - POSTGRES_PASSWORD=643aceb9dae35f7d22e4fd7b4ebdc02e7290a04808c903c8477ed988b1a3a985
       - KAFKA_PASSWORD=5YGnUuvAvVF4_1XXZXdNT4KXA2bydtcm
   reporter-back-office:
     ports:
@@ -53,7 +49,7 @@ services:
     mem_limit: 350m
     mem_reservation: 100M
     environment:
-      - POSTGRES_PASSWORD=5e0f4f6a726561b45ecd7d848e10a9cd201db247f9d3869f6f735eae3e9ca199
+      - POSTGRES_PASSWORD=643aceb9dae35f7d22e4fd7b4ebdc02e7290a04808c903c8477ed988b1a3a985
   db-populator:
     build:
        logs-db-populator
@@ -63,6 +59,8 @@ services:
       - MONGO_PASSWORD=12345.com
       - KAFKA_PASSWORD=5YGnUuvAvVF4_1XXZXdNT4KXA2bydtcm
   info-back-office:
+    ports:
+      - "8383:8080"
     build:
        logs-info-back-office
     mem_limit: 350m
