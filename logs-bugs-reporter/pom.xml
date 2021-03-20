@@ -28,7 +28,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-
+	<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -52,6 +55,6 @@
 		<module>logs-bugs-reporter-back-office</module>
 		<module>logs-bugs-exceptions-handler</module>
 		<module>logs-bugs-discovery-server</module>
-		<module>logs-bugs-accounting - management</module>
+		<module>logs-bugs-accounting-management</module>
 	</modules>
 </project>
