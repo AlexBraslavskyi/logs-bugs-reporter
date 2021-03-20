@@ -33,10 +33,9 @@ public class SecurityConfiguration {
 		SecurityWebFilterChain securityFiltersChain = httpSecurity.csrf()
 				.disable().httpBasic().and().authorizeExchange()
 				.pathMatchers(HttpMethod.GET).hasRole("USER")
-				.pathMatchers(HttpMethod.GET).hasRole("ADMIN")
 				.pathMatchers(HttpMethod.POST).hasRole("ADMIN")
-				.pathMatchers(HttpMethod.DELETE).hasRole("ADMIN")
 				.pathMatchers(HttpMethod.PUT).hasRole("ADMIN")
+				.pathMatchers(HttpMethod.DELETE).hasRole("ADMIN")
 				.and().build();
 		
 		return securityFiltersChain;
