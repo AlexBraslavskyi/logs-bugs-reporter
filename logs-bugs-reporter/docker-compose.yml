@@ -67,15 +67,7 @@ services:
     mem_reservation: 100M
     environment:
       - MONGO_PASSWORD=12345.com
-  accounting-management:
-    ports:
-      - "8087:8087"
-    build:
-       logs-bugs-accounting-management
-    mem_limit: 350m
-    mem_reservation: 100M
-    environment:
-      - MONGO_PASSWORD=12345.com
+
 
   
         
