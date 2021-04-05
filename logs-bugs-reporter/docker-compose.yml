@@ -1,8 +1,6 @@
 version: '2.1'
 services:
   discovery-server:
-    ports:
-      - "8761:8761"
     build:
       logs-bugs-discovery-server
   programmer-email-provider:

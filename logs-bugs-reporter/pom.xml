@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.3</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<version>2.4.2</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>telran.logs.bugs</groupId>
 	<artifactId>logs-bugs-reporter</artifactId>
@@ -15,10 +14,11 @@
 	<packaging>pom</packaging>
 	<name>logs-bugs-reporter</name>
 	<description>logs management and openning bugs from the exceptions</description>
+
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.2</spring-cloud.version>
+		<java.version>14</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -28,38 +28,33 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<modules>
-				<module>log-bugs-dto</module>
-				<module>logs-bugs-mongo-document</module>
-				<module>logs-provider</module>
-				<module>logs-db-populator</module>
-				<module>logs-analyzer</module>
-				<module>logs-bugs-jpa-entities</module>
-				<module>logs-bugs-openning</module>
-				<module>logs-bugs-email-provider</module>
-				<module>logs-bugs-email-notifier</module>
-				<module>logs-bugs-assigner-mail-provider</module>
-				<module>logs-info-back-office</module>
-				<module>logs-bugs-random</module>
-				<module>logs-bugs-reporter-back-office</module>
-				<module>logs-bugs-exceptions-handler</module>
-				<module>logs-bugs-discovery-server</module>
-				<module>logs-bugs-gateway</module>
-				<module>logs-bugs-accounts-provider</module>
-			</modules>
-		</profile>
-	</profiles>
+
+	<modules>
+		<module>log-bugs-dto</module>
+		<module>logs-bugs-mongo-document</module>
+		<module>logs-provider</module>
+		<module>logs-db-populator</module>
+		<module>logs-analyzer</module>
+		<module>logs-bugs-jpa-entities</module>
+		<module>logs-bugs-openning</module>
+		<module>logs-bugs-email-provider</module>
+		<module>logs-bugs-email-notifier</module>
+		<module>logs-bugs-assigner-mail-provider</module>
+		<module>logs-info-back-office</module>
+		<module>logs-bugs-random</module>
+		<module>logs-bugs-reporter-back-office</module>
+		<module>logs-bugs-exceptions-handler</module>
+		<module>logs-bugs-discovery-server</module>
+		<module>logs-bugs-loadbalancer</module>
+		<module>logs-bugs-gateway</module>
+		<module>logs-bugs-accounts-provider</module>
+		<module>log-bugs-accounts-mongodb</module>
+	</modules>
 </project>
