@@ -70,7 +70,7 @@ services:
       - MONGO_PASSWORD=12345.com
   gateway:
     ports:
-      - "9191:9191"
+      - "9090:9090"
     build:
        logs-bugs-gateway
     mem_limit: 350m
